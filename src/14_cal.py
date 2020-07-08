@@ -30,3 +30,29 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+# Remember sys.argv[0] will be the filename that was called
+
+if len(sys.argv) > 3:
+  # too many arguments, print instructions
+  print("Too many arguments.  Expects 0, 1, or 2 arguments.")
+  print("The first optional argument is the month")
+  print("The second optional argument is the year")
+  print("If none are passed, the current month and year are used")
+else:
+  # Assume default values, get today's numbers
+  year = datetime.now().year
+  month = datetime.now().month
+
+  # Check for month or year inputs
+  if len(sys.argv) == 2:
+    # 1 argument passed, assume it is the month
+    month = int(sys.argv[1])
+  
+  elif len(sys.argv) == 3:
+    # 2 arguments passed, assumne month and year
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+  
+  # print the calendar
+  calendar.prmonth(theyear=year, themonth=month)
